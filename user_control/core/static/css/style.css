@@ -1,0 +1,24 @@
+
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    height: 100vh;
+}
+
+.logo_bar{
+    height: 100px;
+}
+
+.login-box{
+    background-color: rgba(194, 191, 191,0.5);
+}
+.content{
+    background-color: rgba(223, 217, 217,0.6);
+}
+
+/* *{
+    border-color: red;
+    border: 1px solid;
+} */
+
+
+

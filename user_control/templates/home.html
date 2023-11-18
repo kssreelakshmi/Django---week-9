@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body{
+        background-image: url("{% static 'images/home.jpg' %}");
+        background-size: 100%;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .col-4 a{
+    font-size: 40px;
+    font-weight: 600;
+    }
+</style>
+<div class="container-fluid d-flex flex-column p-0 h-100 text-black-50 align-items-center">
+    <div class="col-12 rounded-3 p-5 text-box">
+        <h1 class="my-5 fw-semibold"><em>Hello {{user.username}} !</em></h1> 
+        <!-- <h1 class="my-5 fw-semibold"><em>{{user.email}}</em></h1> 
+        <h1 class="my-5 fw-semibold"><em>{{user.first_name}}</em></h1>  -->
+
+        <h3 class="my-5 fw-medium "><em>Welcome to HODOPHILE</em></h3>
+
+        <!-- {% for i in range %}
+        <p>hi</p>
+
+        {% endfor %}
+         -->
+    </div>   
+    <div class="row w-100 m-0 justify-content-center ">
+        <div class="content col-4 p-3 rounded-3 ">
+            <h5 class="p-5">As I Walked Out One Midsummer Morning By <em>Laurie Lee</em></h5>
+            <p class="d-flex"><strong>Laurie Lee was a British poet with a flair for the romantic. In 1934, he struck out from his home in London and walked 
+            all the way to the Cotswolds.The following year, he travelled across Spain—only to find that the country was on the brink
+            of civil war. He describes every detail in his sprawling, lyrical memoir, As I Walked Out One Midsummer Morning.</strong>
+            </p> 
+        </div>
+    </div>
+    <div class="m-5"><q class="col-4 fs-5 fw-medium text-white">“Do not dare not to dare.”</q></div>
+</div>
+{% endblock %}   

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Login</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg row logo_bar navbar-light login-box m-0">
+      <div class="col-4">
+        <a class="navbar-brand mx-5 " href="#">HODOPHILE</a>
+      </div>
+      <div class="col-8 collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <form class="form-inline my-2 my-lg-0 d-flex">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 mx-5 my-sm-0 " type="submit">Search</button>
+        </form>
+        {% if home_or_not %}
+        <a href="{% url 'sign-out' %}">
+            <button type="button" class="btn btn-dark mx-5">Sign out</button>
+        </a>
+        {% else %}
+        <a href="{% url 'sign-in' %}">
+            <button type="button" class="btn btn-dark mx-5">Sign in</button>
+        </a>
+        <a href="{% url 'sign-up' %}">
+          <button type="button" class="btn btn-dark mx-3">Sign Up</button>
+        </a>
+        {% endif %}
+       
+      
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    </body>
+</html>

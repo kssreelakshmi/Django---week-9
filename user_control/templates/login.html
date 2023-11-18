@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+  .parent-container{
+    background-image: url("{% static 'images/login.jpg' %}");
+    background-size: 100%;
+  }
+  .col-4 a{
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+</style>
+<div class="container-fluid w-100 h-100 "> 
+  <div class="row h-100 parent-container align-items-center justify-content-center">
+    <div class="col-4 rounded-3 p-5 login-box">
+      <div class="d-flex justify-content-center mb-5">
+        <h2 class=" text-light fw-bolder ">Sign in to continue...</h2>
+      </div>
+      {% if messages %}
+      {% for message in messages %}
+      
+      <p id="message" class="text-danger">{{message}}</p>
+      
+      {% endfor %}
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group mb-5">
+          <label for="Username"><strong>Username:</strong></label>
+          <input type="text" name="username"  class="form-control mt-2" id="Username" placeholder="Username">
+        </div>
+        <div class="form-group  mb-5">
+          <label for="Password"><strong>Password:</strong></label>
+          <input type="Password" class="form-control mt-2 " name='password' id="Password" placeholder="Enter Password">
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-dark">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>   
+</div>
+
+
+<script>
+  setTimeout(function(){
+    $('#message').fadeOut('slow')
+  },3000)
+
+
+</script> 
+{% endblock %}

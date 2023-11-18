@@ -1,0 +1,82 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<style>
+    .parent-container{
+      background-image: url("{% static 'images/login.jpg' %}");
+      background-size: 100%;
+    }
+    .col-4 a{
+    font-size: 40px;
+    font-weight: 600;
+    }
+    .card{
+      background-color: rgba(255,255,255,0.6);
+    }
+  </style>
+  <div class="d-flex align-items-center parent-container h-100 ">
+      <div class="container ">
+          <div class="row d-flex justify-content-center">
+              <!-- <div class="col-6 text-center"> -->
+                <div class="col-sm-6 d-flex flex-column text-center"> 
+                  <div class="card ">
+                    <div class="card-block center-block ">
+                      <div class="card-header fw-bolder">Welcome to HODOPHILE</div>
+                      {% if messages %}
+                      {% for message in messages %}
+                      
+                      <p id="message" class="text-danger">{{message}}</p>
+                      
+                      {% endfor %}
+                      {% endif %}
+  
+                          <div class=" card-text mx-sm-5 p-4 d-flex justify-content-center align-items-center">
+                            <a href="{% url 'sign-in' %} "class="card-link btn btn-primary align-self-center w-75 p-3 ">Sign In</a>
+                          </div>
+                          <div class="card-text mx-sm-5 p-4 d-flex justify-content-center align-items-center">
+                            <a href="{% url 'sign-up' %}" class='card-link btn btn-primary align-self-center w-75 p-3'>Sign Up</a>
+                          </div>
+                            <!-- col-sm-5 -->
+                          <div class=" card-text mx-sm-5 p-4 d-flex justify-content-center align-items-center">
+                            <a href="{% url 'admin-signin' %}" class='card-link btn btn-primary align-self-center w-75 p-3'>Admin - Sign In</a>
+                          </div>
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+    </div>
+   
+  <script>
+    setTimeout(function(){
+      $('#message').fadeOut('slow')
+    },3000)
+
+
+  </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

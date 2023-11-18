@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+.parent-container{
+    background-image: url("{% static 'images/login.jpg' %}");
+    background-size: 100%;
+  }
+  .card{
+    background-color: rgba(194, 191, 191,0.5);
+    border-radius: 20px;
+  }
+
+</style>
+
+<div class="d-flex align-items-center parent-container h-100 ">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center  h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card p-5">
+            <div class="card-body">
+              <h2 class=" text-center text-white mb-5 ">Create an account</h2>
+                <form class="form-group" method = 'post' >
+                    {% csrf_token %}
+                     
+                        <div class="m-3">
+                          <label for="id_username" class="form-label d-flex">Username</label>
+                          {{form.username}}
+                        </div>
+
+                        <div class="m-3">
+                          <label for="id_first_name" class="form-label d-flex">First Name</label>
+                          {{form.first_name}}
+                        </div>
+
+                        <div class="m-3">
+                          <label for="id_last_name" class="form-label d-flex">Last Name</label>
+                          {{form.last_name}}
+                        </div>
+
+                        <div class="m-3">
+                          <label for="id_email" class="form-label d-flex">Email </label>
+                          {{form.email}}
+                        </div>
+
+                        <div class="m-3">
+                          <label for="id_password" class="form-label d-flex">Password</label>
+                          {{form.password}}
+                        </div>
+                        <br>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        
+        
+                        <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'sign-in' %}"class="fw-bold text-body"><u>Login here</u></a></p>
+                     
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    body{
+        background-image: url("{% static 'images/admin.jpg' %}");
+        background-size: 100%;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .col-4 a{
+    font-size: 40px;
+    font-weight: 600;
+    }
+    h4{
+        background-color: rgba(255, 255, 255, 0.7);
+        color: black;
+    }
+    
+</style>
+<div class="container-fluid d-flex flex-column p-0 h-100 text-black-50 align-items-center justify-content-center">
+    <!-- Button trigger modal -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="createusermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-black">
+            <h5 class="modal-title text-light" id="createuserModalLongTitle">User Details</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user-create' %}" class="form-group" method = 'post' >
+                    {% csrf_token %}
+                    <div class="m-3">
+                        <label for="id_username1" class="form-label d-flex">Username</label>
+                        <input type="text" name="username" class="form-control" required id="id_username1">
+                    </div>
+                    
+                    <div class="m-3">
+                        <label for="id_first_name1" class="form-label d-flex">First Name</label>
+                        <input type="text" name="first_name" class="form-control" required id="id_first_name1">
+                    </div>
+                    
+                    <div class="m-3">
+                        <label for="id_last_name1" class="form-label d-flex">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" required id="id_last_name1">
+                    </div>
+                    
+                    <div class="m-3">
+                        <label for="id_email1" class="form-label d-flex">Email </label>
+                        <input type="email" name="email" class="form-control" required id="id_email1">
+                    </div>
+                    
+                    <div class="m-3">
+                        <label for="id_password1" class="form-label d-flex">Password</label>
+                        <input type="password" name="password" class="form-control" required id="id_password1">
+                    </div>
+
+                    <div class="m-3">
+                        <input type="checkbox" name="is_active" id="id_is_active1">
+                        <label for="id_is_active1" class="form-label">Is active</label>
+                    </div>
+                    
+                    <div class="m-3">
+                        <input type="checkbox" name="is_staff" id="id_is_staff1">
+                        <label for="id_is_staff1" class="form-label">Is staff</label>
+                    </div>
+                    
+                    <div class="m-3">
+                        <input type="checkbox" name="is_superuser" id="id_is_superuser1">
+                        <label for="id_is_superuser1" class="form-label">Is superuser</label>
+                    </div>
+                    <br>
+                    <br>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<h4 class="d-flex justify-content-center w-50 rounded-pill p-2 ">Registered Users</h4>
+<div class="row container w-100 m-0 justify-content-center">
+    <div class="d-flex justify-content-end ">
+    <button type="button" class="btn btn-dark mb-2 rounded-5 text-white" data-bs-toggle="modal" data-bs-target="#createusermodal">
+        Create User
+      </button>
+    </div>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Sl no</th>
+                <th scope="col">Username</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Is active</th>
+                <th scope="col">Block/Unblock</th>
+                <th scope="col">Update/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                
+                    <tr>
+                        <th scope="row" class="table-secondary">{{forloop.counter}}</th>
+                        <td class="table-secondary">{{user.username}}</td>
+                        <td class="table-secondary">{{user.first_name}}</td>
+                        <td class="table-secondary">{{user.last_name}}</td>
+                        <td class="table-secondary">{{user.email}}</td>
+                        <td class="table-secondary">{{user.date_joined}}</td>
+                        <td class="table-secondary">
+                            {% if user.is_active %}
+                            Active
+                            {% else %}
+                            Blocked
+                            {% endif %}
+                        </td>
+                        
+                        {% if user.is_active %}
+                        <td class="table-secondary"><a href="{% url 'user_control' user.id %}" class="btn btn-danger">Block</a></td>
+                        {% else %}
+                        <td class="table-secondary"><a href="{% url 'user_control' user.id %}" class="btn btn-success">Active</a></td>
+                        {% endif %}
+                        
+                        <td class="table-secondary">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Action
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    
+                                    <li><a class="dropdown-item" href="{% url 'user_update' user.id %}">Update</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'user_delete' user.id %}">Delete</a></li>
+                                </ul>
+                            </div>
+                            
+                            
+                        </td>
+                    </tr>
+                    
+                 {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+
+{% endblock %}   
